@@ -14,14 +14,14 @@ namespace MyApp.CommenHelper
         public Task SendEmailAsync(string email, string subject, string htmlMessage)
         {
             var toemail = new MimeMessage();
-            toemail.From.Add(MailboxAddress.Parse("zaheer@halifax-pk.us"));
+            toemail.From.Add(MailboxAddress.Parse("fromemail@abc.com"));
             toemail.To.Add(MailboxAddress.Parse(email));
             toemail.Subject = subject;
             toemail.Body = new TextPart(MimeKit.Text.TextFormat.Html) { Text = htmlMessage };
             using (var emailClient = new SmtpClient()) 
             {
                 emailClient.Connect("smtp.gmail.com", 587, MailKit.Security.SecureSocketOptions.StartTls);
-                emailClient.Authenticate("mianzaheerulhaq@gmail.com", "Pak520139");
+                emailClient.Authenticate("user@gmail.com", "password");
                 emailClient.SendAsync(toemail);
                 emailClient.Disconnect(true);
             }
